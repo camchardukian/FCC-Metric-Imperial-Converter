@@ -7,19 +7,41 @@ function ConvertHandler() {
 
   this.getUnit = function(input) {
     let result;
-
-    return result;
+    const validUnits = ["gal", "L", "mi", "km", "lbs", "kg"];
+    const processedInput = input.replace(/[0-9.\/]/g, "");
+    if (validUnits.includes(processedInput)) {
+      return processedInput;
+    } else {
+      return "invalid unit";
+    }
   };
 
   this.getReturnUnit = function(initUnit) {
     let result;
+    const unitObject = {
+      gal: "L",
+      L: "gal",
+      mi: "km",
+      km: "mi",
+      lbs: "kg",
+      kg: "lbs"
+    };
+    result = unitObject[initUnit];
 
     return result;
   };
 
   this.spellOutUnit = function(unit) {
     let result;
-
+    const spelledOutUnits = {
+      gal: "gallon",
+      L: "liter",
+      mi: "mile",
+      km: "kilometer",
+      lbs: "pound",
+      kg: "kilogram"
+    };
+    result = spelledOutUnits[unit];
     return result;
   };
 

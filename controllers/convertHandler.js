@@ -1,14 +1,34 @@
 function ConvertHandler() {
   this.getNum = function(input) {
-    let result;
+    if (parseFloat(input) <= 0) {
+      return "invalid number";
+    }
+    const alphabetOnlyRegex = /[A-Za-z]/;
+    for (let i = 0; i < input.length; i += 1) {
+      if (alphabetOnlyRegex.test(input[i])) {
+        return this.evalInitialInput(input.substr(0, i));
+      }
+    }
+  };
 
-    return result;
+  this.evalInitialInput = function(initialInputNumber) {
+    const digitRegex = /\d/;
+    if (!digitRegex.test(initialInputNumber)) {
+      return 1;
+    }
+    const splitInitNumber = initialInputNumber.split("/");
+    if (splitInitNumber.length === 1 && splitInitNumber[0]) {
+      return splitInitNumber[0];
+    } else if (splitInitNumber.length === 2) {
+      return splitInitNumber[0] / splitInitNumber[1];
+    } else {
+      return "invalid number";
+    }
   };
 
   this.getUnit = function(input) {
-    let result;
     const validUnits = ["gal", "L", "mi", "km", "lbs", "kg"];
-    const processedInput = input.replace(/[0-9.\/]/g, "");
+    const processedInput = input.replace(/[-0-9.\/]/g, "");
     if (validUnits.includes(processedInput)) {
       return processedInput;
     } else {

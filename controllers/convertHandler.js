@@ -18,9 +18,9 @@ function ConvertHandler() {
     }
     const splitInitNumber = initialInputNumber.split("/");
     if (splitInitNumber.length === 1 && splitInitNumber[0]) {
-      return splitInitNumber[0];
+      return Number(splitInitNumber[0]);
     } else if (splitInitNumber.length === 2) {
-      return splitInitNumber[0] / splitInitNumber[1];
+      return Number(splitInitNumber[0] / splitInitNumber[1]);
     } else {
       return "invalid number";
     }
@@ -65,19 +65,54 @@ function ConvertHandler() {
     return result;
   };
 
-  this.convert = function(initNum, initUnit) {
+  this.convert = function({ initNum, initUnit }) {
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
-    let result;
+    switch (initUnit) {
+      case "gal":
+        return initNum * galToL;
 
-    return result;
+      case "L":
+        return initNum / galToL;
+
+      case "kg":
+        return initNum / lbsToKg;
+
+      case "lbs":
+        return initNum * lbsToKg;
+
+      case "mi":
+        return initNum / miToKm;
+
+      case "km":
+        return initNum / miToKm;
+
+      default:
+        return "invalid input";
+    }
   };
 
-  this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    let result;
+  this.getString = function({ initNum, initUnit, returnNum, returnUnit }) {
+    const shouldConcatLetterS = ({ unit, number }) => {
+      if (number != 1) {
+        return unit + "s";
+      } else {
+        return unit;
+      }
+    };
+    let spelledOutInitUnit = this.spellOutUnit(initUnit);
+    spelledOutInitUnit = shouldConcatLetterS({
+      unit: spelledOutInitUnit,
+      number: initNum
+    });
+    let spelledOutReturnUnit = this.spellOutUnit(returnUnit);
+    spelledOutReturnUnit = shouldConcatLetterS({
+      unit: spelledOutReturnUnit,
+      number: returnNum
+    });
 
-    return result;
+    return `${initNum} ${spelledOutInitUnit} converts to ${returnNum} ${spelledOutReturnUnit}`;
   };
 }
 

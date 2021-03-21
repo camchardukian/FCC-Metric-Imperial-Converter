@@ -10,8 +10,13 @@ module.exports = function(app) {
     const initUnit = convertHandler.getUnit(input);
     const initNum = convertHandler.getNum(input);
     const returnUnit = convertHandler.getReturnUnit(initUnit);
-    const spelledOutInitUnit = convertHandler.spellOutUnit(initUnit);
-    const spelledOutReturnUnit = convertHandler.spellOutUnit(returnUnit);
+    const returnNum = convertHandler.convert({ initNum, initUnit });
+    const string = convertHandler.getString({
+      initNum,
+      initUnit,
+      returnNum,
+      returnUnit
+    });
 
     if (initNum === "invalid number" && initUnit === "invalid unit") {
       res.json({
@@ -35,9 +40,9 @@ module.exports = function(app) {
     res.json({
       initNum,
       initUnit,
-      returnNum: "placeholder returnNum",
+      returnNum,
       returnUnit,
-      string: `${initNum} ${spelledOutInitUnit} converts to example number of ${spelledOutReturnUnit}`
+      string
     });
   });
 };

@@ -46,9 +46,9 @@ suite("Unit Tests", function() {
     let result = [];
     const unitsArray = ["gal", "L", "mi", "km", "lbs", "kg"];
     result.push(convertHandler.getReturnUnit("L"));
-    result.push(convertHandler.getReturnUnit("gal"));
+    result.push(convertHandler.getReturnUnit("GAL"));
     result.push(convertHandler.getReturnUnit("km"));
-    result.push(convertHandler.getReturnUnit("mi"));
+    result.push(convertHandler.getReturnUnit("MI"));
     result.push(convertHandler.getReturnUnit("kg"));
     result.push(convertHandler.getReturnUnit("lbs"));
     assert.deepEqual(result, unitsArray);
@@ -56,19 +56,19 @@ suite("Unit Tests", function() {
   it("#10 -- convertHandler should correctly return the spelled-out string unit for each valid input unit.", () => {
     let result = [];
     const unitsArray = [
-      "gallon",
-      "liter",
-      "mile",
-      "kilometer",
-      "pound",
-      "kilogram"
+      "gallons",
+      "liters",
+      "miles",
+      "kilometers",
+      "pounds",
+      "kilograms"
     ];
     result.push(convertHandler.spellOutUnit("gal"));
     result.push(convertHandler.spellOutUnit("L"));
     result.push(convertHandler.spellOutUnit("mi"));
-    result.push(convertHandler.spellOutUnit("km"));
+    result.push(convertHandler.spellOutUnit("KM"));
     result.push(convertHandler.spellOutUnit("lbs"));
-    result.push(convertHandler.spellOutUnit("kg"));
+    result.push(convertHandler.spellOutUnit("KG"));
     assert.deepEqual(result, unitsArray);
   });
 });
@@ -77,40 +77,40 @@ it("#11 -- convertHandler should correctly convert gal to L.", () => {
   const initUnit = "gal";
   const galToL = 3.78541;
   const result = convertHandler.convert({ initNum, initUnit });
-  assert.equal(result, initNum * galToL);
+  assert.equal(result, Math.round(initNum * galToL * 100000) / 100000);
 });
 it("#12 -- convertHandler should correctly convert L to gal.", () => {
   const initNum = Math.random();
   const initUnit = "L";
   const galToL = 3.78541;
   const result = convertHandler.convert({ initNum, initUnit });
-  assert.equal(result, initNum / galToL);
+  assert.equal(result, Math.round((initNum / galToL) * 100000) / 100000);
 });
 it("#13 -- convertHandler should correctly convert mi to km.", () => {
   const initNum = Math.random();
   const initUnit = "mi";
   const miToKm = 1.60934;
   const result = convertHandler.convert({ initNum, initUnit });
-  assert.equal(result, initNum * miToKm);
+  assert.equal(result, Math.round(initNum * miToKm * 100000) / 100000);
 });
 it("#14 -- convertHandler should correctly convert km to mi.", () => {
   const initNum = Math.random();
   const initUnit = "km";
   const miToKm = 1.60934;
   const result = convertHandler.convert({ initNum, initUnit });
-  assert.equal(result, initNum / miToKm);
+  assert.equal(result, Math.round((initNum / miToKm) * 100000) / 100000);
 });
 it("#15 -- convertHandler should correctly convert lbs to kg.", () => {
   const initNum = Math.random();
   const initUnit = "lbs";
   const lbsToKg = 0.453592;
   const result = convertHandler.convert({ initNum, initUnit });
-  assert.equal(result, initNum * lbsToKg);
+  assert.equal(result, Math.round(initNum * lbsToKg * 100000) / 100000);
 });
 it("#16 -- convertHandler should correctly convert kg to lbs.", () => {
   const initNum = Math.random();
   const initUnit = "kg";
   const lbsToKg = 0.453592;
   const result = convertHandler.convert({ initNum, initUnit });
-  assert.equal(result, initNum / lbsToKg);
+  assert.equal(result, Math.round((initNum / lbsToKg) * 100000) / 100000);
 });

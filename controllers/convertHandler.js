@@ -31,6 +31,7 @@ function ConvertHandler() {
       "gal",
       "GAL",
       "L",
+      "l",
       "mi",
       "MI",
       "km",
@@ -41,10 +42,14 @@ function ConvertHandler() {
       "KG"
     ];
     const processedInput = input.replace(/[-0-9.\/]/g, "");
-    if (validUnits.includes(processedInput) && processedInput !== "L") {
+    if (
+      validUnits.includes(processedInput) &&
+      processedInput !== "l" &&
+      processedInput !== "L"
+    ) {
       return processedInput.toLowerCase();
     } else if (validUnits.includes(processedInput)) {
-      return processedInput;
+      return processedInput.toUpperCase();
     } else {
       return "invalid unit";
     }
@@ -118,23 +123,8 @@ function ConvertHandler() {
   };
 
   this.getString = function({ initNum, initUnit, returnNum, returnUnit }) {
-    // const shouldConcatLetterS = ({ unit, number }) => {
-    //   if (number != 1) {
-    //     return unit + "s";
-    //   } else {
-    //     return unit;
-    //   }
-    // };
     let spelledOutInitUnit = this.spellOutUnit(initUnit);
-    // spelledOutInitUnit = shouldConcatLetterS({
-    //   unit: spelledOutInitUnit,
-    //   number: initNum,
-    // });
     let spelledOutReturnUnit = this.spellOutUnit(returnUnit);
-    // spelledOutReturnUnit = shouldConcatLetterS({
-    //   unit: spelledOutReturnUnit,
-    //   number: returnNum,
-    // });
 
     return `${initNum} ${spelledOutInitUnit} converts to ${returnNum} ${spelledOutReturnUnit}`;
   };

@@ -2,13 +2,10 @@
   "name": "fcc-imperial-metric-converter-boilerplate",
   "version": "1.0.0",
   "description": "Metric / Imperial Unit Converter",
-  "homepage": "https://camchardukian.github.io/FCC-Metric-Imperial-Converter/",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha ./tests/ --ui tdd",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "test": "mocha ./tests/ --ui tdd"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

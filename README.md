@@ -1,4 +1,4 @@
-# Metric Imerial Converter
+# Metric Imperial Converter
 
 I built this project as the 1st of 5 projects necessary to earn [FreeCodeCamp's Quality Assurance Certification](https://www.freecodecamp.org/learn/quality-assurance/).
 
